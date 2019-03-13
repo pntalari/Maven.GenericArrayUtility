@@ -4,6 +4,7 @@ import sun.tools.jconsole.inspector.XObject;
 
 import java.io.ObjectStreamConstants;
 import java.lang.reflect.Array;
+import java.security.PublicKey;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -19,44 +20,55 @@ public class ArrayUtility<E extends Object> {
         this.arr = inputArray;
     }
 
-    public E countDuplicatesInMerge(E[] arrayToMerge, E valueToEvaluate) {
+    public Integer countDuplicatesInMerge(E[] arrayToMerge, E valueToEvaluate) {
+        Long result = Arrays.stream(mergeArrays(arrayToMerge))
+                .filter(n -> n == valueToEvaluate).count();
+
+        return result.intValue();
+    }
+
+    public E[] mergeArrays(E[] arrayToMerge) {
         final E[] mergedArr = (E[]) java.lang.reflect.Array.newInstance(arrayToMerge.getClass().
-                getComponentType(),arrayToMerge.length+this.arr.length);
-        System.arraycopy(arrayToMerge,0,mergedArr,0,arrayToMerge.length);
-        System.arraycopy(this.arr,0,mergedArr,arrayToMerge.length,this.arr.length);
+                getComponentType(), arrayToMerge.length + this.arr.length);
+        System.arraycopy(arrayToMerge, 0, mergedArr, 0, arrayToMerge.length);
+        System.arraycopy(this.arr, 0, mergedArr, arrayToMerge.length, this.arr.length);
 
-        E result = (E) (((Object) Arrays.stream(mergedArr)
-                .filter(n -> n == valueToEvaluate).count()));
-
-        return result;
-
+        return mergedArr;
     }
 
     public E getMostCommonFromMerge(E[] arrayToMerge) {
-        final E[] mergedArr = (E[]) java.lang.reflect.Array.newInstance(arrayToMerge.getClass().
-                getComponentType(),arrayToMerge.length+this.arr.length);
-        System.arraycopy(arrayToMerge,0,mergedArr,0,arrayToMerge.length);
-        System.arraycopy(this.arr,0,mergedArr,arrayToMerge.length,this.arr.length);
+        Integer maxCount = 0;
+        E ele = null;
 
-       // Map<String,E> map = Arrays.stream(mergedArr)
-          //      .collect(Collectors.groupingBy(Objects::toString, Collectors.counting()));
+        E[] mergedArr = mergeArrays(arrayToMerge);
 
-        return null;
+        for (E element : mergedArr) {
+            Integer currentCount = getNumberOfOccurrences(element);
+            maxCount = currentCount;
+            ele = element;
+            if (currentCount > maxCount) {
+                maxCount = currentCount;
+                ele = element;
+            }
+        }
+
+        return ele;
     }
 
-    public E getNumberOfOccurrences(E valueToEvaluate) {
+    public Integer getNumberOfOccurrences(E valueToEvaluate) {
+        Long result = (Arrays.stream(arr).filter(val -> val == valueToEvaluate).count());
 
-        return (E)(Object) (Arrays.stream(arr).filter(val->val==valueToEvaluate).count());
+        return result.intValue();
     }
 
     public E[] removeValue(E valueToRemove) {
-       List<E> list = Arrays.stream(arr)
-               .filter(val -> val != valueToRemove)
-               .collect(Collectors.toList());
+        List<E> list = Arrays.stream(arr)
+                .filter(val -> val != valueToRemove)
+                .collect(Collectors.toList());
 
-       E[] arr1 = (E[]) Array.newInstance(arr.getClass().getComponentType(),list.size());
+        E[] arr1 = (E[]) Array.newInstance(arr.getClass().getComponentType(), list.size());
 
-       return list.toArray(arr1);
+        return list.toArray(arr1);
 
     }
 }
