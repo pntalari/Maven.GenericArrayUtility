@@ -32,7 +32,7 @@ public class GetNumberOfOccurrencesTest {
         ArrayUtility<Long> arrayUtility = new ArrayUtility<Long>(inputArray);
 
         // When
-        Integer actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
+        Long actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -47,7 +47,7 @@ public class GetNumberOfOccurrencesTest {
         ArrayUtility<String> arrayUtility = new ArrayUtility<String>(inputArray);
 
         // When
-        Integer actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
+        String actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -62,7 +62,7 @@ public class GetNumberOfOccurrencesTest {
         ArrayUtility<Object> arrayUtility = new ArrayUtility<Object>(inputArray);
 
         // When
-        Integer actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
+        Object actual = arrayUtility.getNumberOfOccurrences(valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);

@@ -1,6 +1,5 @@
 package com.zipcodewilmington.arrayutility;
 
-import com.zipcodewilmington.UnitTestingUtils;
 import org.junit.Test;
 
 /**
@@ -31,7 +30,6 @@ public class RemoveValueTest {
         Long[] expected = {12L, 2L, 8L, 4L, 5L, 0L, 9L, 8L};
         Long[] inputArray = {12L, 2L, valueToRemove, 8L, 4L, 5L, valueToRemove, 0L, 9L, 8L, valueToRemove};
         ArrayUtility<Long> arrayUtility = new ArrayUtility<Long>(inputArray);
-
 
         // When
         Long[] actual = arrayUtility.removeValue(valueToRemove);

@@ -34,7 +34,7 @@ public class CountDuplicatesInMergeTest {
         ArrayUtility<Long> arrayUtility = new ArrayUtility<Long>(inputArray);
 
         // When
-        Integer actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
+        Long actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -51,7 +51,7 @@ public class CountDuplicatesInMergeTest {
         ArrayUtility<String> arrayUtility = new ArrayUtility<String>(inputArray);
 
         // When
-        Integer actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
+        String actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -68,7 +68,7 @@ public class CountDuplicatesInMergeTest {
         ArrayUtility<Object> arrayUtility = new ArrayUtility<Object>(inputArray);
 
         // When
-        Integer actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
+        Object actual = arrayUtility.countDuplicatesInMerge(arrayToMerge, valueToEvaluate);
 
         // Then
         Assert.assertEquals(expected, actual);
